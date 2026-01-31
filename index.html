@@ -79,15 +79,19 @@
             width: 100%;
             height: 200%;
             background-image: 
-                radial-gradient(2px 2px at 20% 30%, white, transparent),
-                radial-gradient(2px 2px at 60% 70%, white, transparent),
-                radial-gradient(1px 1px at 50% 50%, white, transparent),
-                radial-gradient(1px 1px at 80% 10%, white, transparent),
-                radial-gradient(2px 2px at 90% 60%, white, transparent),
-                radial-gradient(1px 1px at 33% 80%, white, transparent);
+                radial-gradient(3px 3px at 20% 30%, white, transparent),
+                radial-gradient(4px 4px at 60% 70%, white, transparent),
+                radial-gradient(2px 2px at 50% 50%, white, transparent),
+                radial-gradient(3px 3px at 80% 10%, white, transparent),
+                radial-gradient(4px 4px at 90% 60%, white, transparent),
+                radial-gradient(2px 2px at 33% 80%, white, transparent),
+                radial-gradient(3px 3px at 15% 60%, white, transparent),
+                radial-gradient(2px 2px at 70% 40%, white, transparent),
+                radial-gradient(4px 4px at 45% 20%, white, transparent),
+                radial-gradient(3px 3px at 25% 90%, white, transparent);
             background-size: 200% 200%;
             animation: snowfall 20s linear infinite;
-            opacity: 0.4;
+            opacity: 0.8;
             pointer-events: none;
         }
 
@@ -106,6 +110,26 @@
             max-width: 1200px;
             padding: 2rem;
             animation: fadeInUp 1.2s ease-out;
+        }
+
+        .proximity-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 1rem 2.5rem;
+            font-family: 'Anybody', sans-serif;
+            font-weight: 900;
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 40px rgba(255, 107, 53, 0.5);
+            animation: fadeInUp 1s ease-out, pulse-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 10px 40px rgba(255, 107, 53, 0.5); }
+            50% { box-shadow: 0 10px 60px rgba(255, 107, 53, 0.8); }
         }
 
         @keyframes fadeInUp {
@@ -140,6 +164,17 @@
             letter-spacing: 0.05em;
             animation: fadeInUp 1.4s ease-out;
             text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .drive-time-highlight {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--ice-dark);
+            padding: 0.5rem 1.5rem;
+            font-weight: 700;
+            border-radius: 50px;
+            font-family: 'Anybody', sans-serif;
+            margin: 0 0.3rem;
         }
 
         .cta-button {
@@ -389,6 +424,34 @@
             pointer-events: none;
         }
 
+        .gallery::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 25% 20%, white, transparent),
+                radial-gradient(3px 3px at 65% 60%, white, transparent),
+                radial-gradient(2px 2px at 85% 30%, white, transparent),
+                radial-gradient(3px 3px at 45% 70%, white, transparent),
+                radial-gradient(2px 2px at 15% 85%, white, transparent);
+            background-size: 150% 150%;
+            animation: snowfall-slow 25s linear infinite;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        @keyframes snowfall-slow {
+            from {
+                transform: translateY(-100px);
+            }
+            to {
+                transform: translateY(100px);
+            }
+        }
+
         .gallery-grid {
             max-width: 1600px;
             margin: 0 auto;
@@ -573,6 +636,27 @@
         .location-item-text p {
             font-size: 1.1rem;
             color: var(--ice-mid);
+        }
+
+        .location-map {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            border: 4px solid var(--ice-bright);
+            box-shadow: 0 10px 40px rgba(74, 144, 200, 0.3);
+            background: white;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .location-map iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .location-map a:hover div {
+            opacity: 1 !important;
         }
 
         /* Amenities Section */
@@ -763,9 +847,70 @@
         <div class="hero-decoration decoration-3"></div>
         
         <div class="hero-content">
+            <div class="proximity-badge">Your Tyrol Basin Basecamp</div>
             <h1>Driftless<br>View Farm</h1>
-            <p class="hero-subtitle">Your Escape in Wisconsin's Rolling Hills</p>
+            <p class="hero-subtitle">Nestled in the <span class="drive-time-highlight">Driftless Hills</span> — your winter escape</p>
             <a href="https://evolve.com/vacation-rentals/us/wi/arena/465623" class="cta-button">Book Your Stay</a>
+        </div>
+    </section>
+
+    <!-- Location Section - MOVED TO TOP -->
+    <section class="location">
+        <div class="location-content">
+            <div class="location-text">
+                <h2>A Scenic Drive to the Slopes</h2>
+                <div class="location-details">
+                    <div class="location-item fade-in-on-scroll">
+                        <div class="location-marker">⛷️</div>
+                        <div class="location-item-text">
+                            <h3>Tyrol Basin Ski Resort</h3>
+                            <p>A beautiful drive through the rolling hills of the Driftless Area. Wake up at the farm, enjoy the scenic route, and be on the slopes in no time. All without resort hotel prices.</p>
+                        </div>
+                    </div>
+
+                    <div class="location-item fade-in-on-scroll">
+                        <div class="location-marker">🌲</div>
+                        <div class="location-item-text">
+                            <h3>The Driftless Region</h3>
+                            <p>Surrounded by stunning glacial-free terrain with dramatic valleys and ridges. This unique landscape makes every drive an experience—including your morning commute to the slopes.</p>
+                        </div>
+                    </div>
+
+                    <div class="location-item fade-in-on-scroll">
+                        <div class="location-marker">🏛️</div>
+                        <div class="location-item-text">
+                            <h3>Madison</h3>
+                            <p>30 miles east - explore the state capital's dining, culture, and entertainment</p>
+                        </div>
+                    </div>
+
+                    <div class="location-item fade-in-on-scroll">
+                        <div class="location-marker">🍷</div>
+                        <div class="location-item-text">
+                            <h3>Local Experiences</h3>
+                            <p>Wineries, breweries, farmers markets, and farm-to-table dining nearby</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="location-map fade-in-on-scroll">
+                <a href="https://www.google.com/maps/dir/7037+Demby+Rd,+Arena,+WI+53503/3487+Bohn+Rd,+Mount+Horeb,+WI+53572/@43.0896548,-89.9072854,13z" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   style="display: block; width: 100%; height: 100%; position: relative;">
+                    <iframe 
+                        src="https://www.google.com/maps?q=3487+Bohn+Rd,+Mount+Horeb,+WI+53572&output=embed"
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        style="pointer-events: none;">
+                    </iframe>
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--accent); color: white; padding: 1rem 2rem; font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 1.2rem; text-transform: uppercase; box-shadow: 0 10px 40px rgba(0,0,0,0.3); z-index: 10; opacity: 0; transition: opacity 0.3s;">
+                        Click for Directions
+                    </div>
+                </a>
+            </div>
         </div>
     </section>
 
@@ -778,9 +923,9 @@
         <div class="features-grid">
             <div class="feature-card fade-in-on-scroll">
                 <div class="feature-icon">⛷️</div>
-                <h3>Ski Tyrol Basin</h3>
-                <p>Just minutes from Tyrol Basin Ski Resort, your winter adventure headquarters. Experience 22 runs, terrain parks, and night skiing on 280 feet of vertical terrain.</p>
-                <span class="feature-highlight">20 Miles to Slopes</span>
+                <h3>Close to Slopes</h3>
+                <p>Driftless View Farm puts you incredibly close to Tyrol Basin. Experience 22 runs, terrain parks, and night skiing without paying resort prices.</p>
+                <span class="feature-highlight">Perfect Ski Basecamp</span>
             </div>
 
             <div class="feature-card fade-in-on-scroll">
@@ -834,56 +979,6 @@
             <div class="gallery-item">
                 <div class="gallery-placeholder sunset-slopes">
                     <span>Golden Hour on the Slopes</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Location Section -->
-    <section class="location">
-        <div class="location-content">
-            <div class="location-text">
-                <h2>Perfectly Located in Arena</h2>
-                <div class="location-details">
-                    <div class="location-item fade-in-on-scroll">
-                        <div class="location-marker">⛷️</div>
-                        <div class="location-item-text">
-                            <h3>Tyrol Basin</h3>
-                            <p>20 miles west - just 25 minutes to hit the slopes with your family</p>
-                        </div>
-                    </div>
-
-                    <div class="location-item fade-in-on-scroll">
-                        <div class="location-marker">🏛️</div>
-                        <div class="location-item-text">
-                            <h3>Madison</h3>
-                            <p>30 miles east - explore the state capital's dining, culture, and entertainment</p>
-                        </div>
-                    </div>
-
-                    <div class="location-item fade-in-on-scroll">
-                        <div class="location-marker">🌲</div>
-                        <div class="location-item-text">
-                            <h3>Driftless Area</h3>
-                            <p>Surrounded by unique glacial-free terrain with stunning valleys and ridges</p>
-                        </div>
-                    </div>
-
-                    <div class="location-item fade-in-on-scroll">
-                        <div class="location-marker">🍷</div>
-                        <div class="location-item-text">
-                            <h3>Local Experiences</h3>
-                            <p>Wineries, breweries, farmers markets, and farm-to-table dining nearby</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="location-map fade-in-on-scroll">
-                <div class="gallery-item" style="height: 500px;">
-                    <div class="gallery-placeholder ski-action">
-                        <span>Arena, Wisconsin<br>Gateway to Tyrol Basin</span>
-                    </div>
                 </div>
             </div>
         </div>
