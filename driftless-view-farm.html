@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driftless View Farm | Your Wisconsin Driftless Escape</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600;700&family=Anybody:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ice-dark: #1a2f4a;
+            --ice-mid: #2d5a7b;
+            --ice-bright: #4a90c8;
+            --powder: #e8f4f8;
+            --sky-light: #b8d8e8;
+            --snow: #ffffff;
+            --frost: #f0f8ff;
+            --accent: #ff6b35;
+            --warm: #ff8c42;
+            --deep-blue: #0d1b2a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Pro', serif;
+            color: var(--ice-dark);
+            background: var(--frost);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--deep-blue) 0%, var(--ice-mid) 50%, var(--ice-bright) 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 100px,
+                    rgba(255,255,255,0.05) 100px,
+                    rgba(255,255,255,0.05) 200px
+                );
+            pointer-events: none;
+        }
+
+        /* Snowflakes animation */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: 0;
+            width: 100%;
+            height: 200%;
+            background-image: 
+                radial-gradient(2px 2px at 20% 30%, white, transparent),
+                radial-gradient(2px 2px at 60% 70%, white, transparent),
+                radial-gradient(1px 1px at 50% 50%, white, transparent),
+                radial-gradient(1px 1px at 80% 10%, white, transparent),
+                radial-gradient(2px 2px at 90% 60%, white, transparent),
+                radial-gradient(1px 1px at 33% 80%, white, transparent);
+            background-size: 200% 200%;
+            animation: snowfall 20s linear infinite;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        @keyframes snowfall {
+            from {
+                transform: translateY(-50%);
+            }
+            to {
+                transform: translateY(0%);
+            }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 1200px;
+            padding: 2rem;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Anybody', sans-serif;
+            font-size: clamp(3rem, 10vw, 8rem);
+            font-weight: 900;
+            color: var(--snow);
+            text-transform: uppercase;
+            letter-spacing: -0.03em;
+            line-height: 0.9;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 40px rgba(74, 144, 200, 0.5), 4px 4px 0px rgba(0,0,0,0.3);
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.3rem, 3vw, 2rem);
+            color: var(--powder);
+            font-weight: 300;
+            margin-bottom: 3rem;
+            letter-spacing: 0.05em;
+            animation: fadeInUp 1.4s ease-out;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            font-family: 'Anybody', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border: 3px solid var(--accent);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1.6s ease-out;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--warm);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .cta-button:hover::before {
+            left: 0;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Floating decorative elements */
+        .hero-decoration {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
+        }
+
+        .decoration-1 {
+            top: 10%;
+            left: 10%;
+            width: 120px;
+            height: 120px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation-delay: 0s;
+            box-shadow: 0 0 20px rgba(74, 144, 200, 0.3);
+        }
+
+        .decoration-2 {
+            bottom: 15%;
+            right: 12%;
+            width: 80px;
+            height: 80px;
+            border: 3px solid rgba(255, 255, 255, 0.4);
+            transform: rotate(45deg);
+            animation-delay: 2s;
+            box-shadow: 0 0 15px rgba(184, 216, 232, 0.4);
+        }
+
+        .decoration-3 {
+            top: 40%;
+            right: 8%;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            animation-delay: 4s;
+            box-shadow: 0 0 25px rgba(74, 144, 200, 0.5);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 8rem 2rem;
+            background: var(--snow);
+            position: relative;
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(to bottom, var(--ice-bright), transparent);
+            opacity: 0.08;
+        }
+
+        .features-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            position: relative;
+            padding: 3rem 2rem;
+            background: white;
+            border: 3px solid var(--ice-mid);
+            transition: all 0.4s ease;
+            animation: fadeIn 1s ease-out backwards;
+            box-shadow: 0 4px 20px rgba(74, 144, 200, 0.1);
+        }
+
+        .feature-card:nth-child(1) { animation-delay: 0.2s; }
+        .feature-card:nth-child(2) { animation-delay: 0.4s; }
+        .feature-card:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: var(--ice-bright);
+            z-index: -1;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: translate(8px, 8px);
+        }
+
+        .feature-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 0 8px 30px rgba(74, 144, 200, 0.2);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--ice-bright), var(--ice-mid));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            box-shadow: 0 4px 15px rgba(74, 144, 200, 0.3);
+        }
+
+        .feature-card h3 {
+            font-family: 'Anybody', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--ice-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .feature-card p {
+            font-size: 1.1rem;
+            color: var(--ice-mid);
+            line-height: 1.8;
+        }
+
+        .feature-highlight {
+            display: inline-block;
+            background: var(--powder);
+            padding: 0.3rem 0.8rem;
+            margin-top: 1rem;
+            font-weight: 600;
+            color: var(--ice-dark);
+            font-family: 'Anybody', sans-serif;
+            letter-spacing: 0.05em;
+            border: 2px solid var(--ice-bright);
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-family: 'Anybody', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 900;
+            color: var(--ice-dark);
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            line-height: 1;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--ice-bright), var(--accent));
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 8rem 2rem;
+            background: var(--deep-blue);
+            color: var(--snow);
+            position: relative;
+        }
+
+        .gallery::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(74, 144, 200, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(184, 216, 232, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .gallery-grid {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .gallery-item {
+            aspect-ratio: 4/3;
+            background: var(--ice-mid);
+            position: relative;
+            overflow: hidden;
+            border: 4px solid var(--snow);
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            z-index: 10;
+            box-shadow: 0 15px 40px rgba(74, 144, 200, 0.4);
+        }
+
+        .gallery-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Anybody', sans-serif;
+            font-size: 1.2rem;
+            color: var(--snow);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .gallery-placeholder::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(13, 27, 42, 0.4), rgba(74, 144, 200, 0.4));
+        }
+
+        .gallery-placeholder span {
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+            padding: 1rem 2rem;
+            background: rgba(13, 27, 42, 0.6);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Vivid ski imagery backgrounds */
+        .ski-action {
+            background-image: linear-gradient(135deg, #4a90c8 0%, #e8f4f8 100%);
+            background-size: 200% 200%;
+            animation: skiGradient 5s ease infinite;
+        }
+
+        @keyframes skiGradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .night-skiing {
+            background: radial-gradient(circle at 30% 40%, #ff6b35 0%, #2d5a7b 40%, #0d1b2a 100%);
+        }
+
+        .powder-day {
+            background: linear-gradient(to bottom, #b8d8e8 0%, #ffffff 50%, #e8f4f8 100%);
+        }
+
+        .chairlift-view {
+            background: linear-gradient(to bottom, #4a90c8 0%, #ffffff 70%, #2d5a7b 100%);
+        }
+
+        .lodge-warmth {
+            background: linear-gradient(135deg, #ff8c42 0%, #b8d8e8 100%);
+        }
+
+        .sunset-slopes {
+            background: linear-gradient(to bottom, #ff6b35 0%, #ff8c42 30%, #4a90c8 70%, #1a2f4a 100%);
+        }
+
+        /* Location Section */
+        .location {
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, var(--powder) 0%, var(--snow) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .location::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: var(--ice-bright);
+            opacity: 0.08;
+            transform: skewX(-15deg);
+            transform-origin: top;
+        }
+
+        .location-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .location-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+
+        .location-text h2 {
+            font-family: 'Anybody', sans-serif;
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 900;
+            color: var(--ice-dark);
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+        }
+
+        .location-details {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .location-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+
+        .location-marker {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--ice-bright), var(--ice-mid));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(74, 144, 200, 0.3);
+        }
+
+        .location-item-text h3 {
+            font-family: 'Anybody', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--ice-dark);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .location-item-text p {
+            font-size: 1.1rem;
+            color: var(--ice-mid);
+        }
+
+        /* Amenities Section */
+        .amenities {
+            padding: 8rem 2rem;
+            background: var(--snow);
+        }
+
+        .amenities-grid {
+            max-width: 1200px;
+            margin: 4rem auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .amenity-item {
+            padding: 2rem;
+            background: var(--frost);
+            border-left: 6px solid var(--ice-bright);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(74, 144, 200, 0.1);
+        }
+
+        .amenity-item:hover {
+            background: var(--powder);
+            border-left-color: var(--accent);
+            transform: translateX(10px);
+            box-shadow: 0 4px 20px rgba(74, 144, 200, 0.2);
+        }
+
+        .amenity-item h4 {
+            font-family: 'Anybody', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--ice-dark);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .amenity-item p {
+            color: var(--ice-mid);
+            font-size: 1rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 10rem 2rem;
+            background: linear-gradient(135deg, var(--deep-blue) 0%, var(--ice-dark) 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(74, 144, 200, 0.3) 0%, transparent 70%);
+            animation: pulse 15s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.5; }
+        }
+
+        .cta-section-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-section h2 {
+            font-family: 'Anybody', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 6rem);
+            font-weight: 900;
+            color: var(--snow);
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            line-height: 1;
+            text-shadow: 0 0 40px rgba(74, 144, 200, 0.5);
+        }
+
+        .cta-section p {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            color: var(--powder);
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-secondary {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: transparent;
+            color: var(--snow);
+            text-decoration: none;
+            font-family: 'Anybody', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border: 3px solid var(--snow);
+            transition: all 0.3s ease;
+        }
+
+        .cta-secondary:hover {
+            background: var(--snow);
+            color: var(--ice-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--deep-blue);
+            color: var(--powder);
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+            border-top: 6px solid var(--ice-bright);
+        }
+
+        footer p {
+            font-size: 1rem;
+            opacity: 0.7;
+        }
+
+        footer a {
+            color: var(--sky-light);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            color: var(--accent);
+        }
+
+        /* Scroll animations */
+        .fade-in-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .amenities-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-decoration decoration-1"></div>
+        <div class="hero-decoration decoration-2"></div>
+        <div class="hero-decoration decoration-3"></div>
+        
+        <div class="hero-content">
+            <h1>Driftless<br>View Farm</h1>
+            <p class="hero-subtitle">Your Escape in Wisconsin's Rolling Hills</p>
+            <a href="https://evolve.com/vacation-rentals/us/wi/arena/465623" class="cta-button">Book Your Stay</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="section-header">
+            <h2 class="section-title">Why Stay Here</h2>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card fade-in-on-scroll">
+                <div class="feature-icon">⛷️</div>
+                <h3>Ski Tyrol Basin</h3>
+                <p>Just minutes from Tyrol Basin Ski Resort, your winter adventure headquarters. Experience 22 runs, terrain parks, and night skiing on 280 feet of vertical terrain.</p>
+                <span class="feature-highlight">20 Miles to Slopes</span>
+            </div>
+
+            <div class="feature-card fade-in-on-scroll">
+                <div class="feature-icon">🔌</div>
+                <h3>EV Charging</h3>
+                <p>Charge your electric vehicle while you unwind. Our on-site EV charger means you'll wake up ready for adventure with a fully charged battery.</p>
+                <span class="feature-highlight">Level 2 Charger</span>
+            </div>
+
+            <div class="feature-card fade-in-on-scroll">
+                <div class="feature-icon">🐕</div>
+                <h3>Dogs Welcome</h3>
+                <p>Your four-legged family members are part of the adventure. Bring your furry friend to explore acres of rolling farmland in the heart of the Driftless Region.</p>
+                <span class="feature-highlight">Pet-Friendly</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery">
+        <div class="section-header">
+            <h2 class="section-title" style="color: var(--snow);">Experience Wisconsin Skiing</h2>
+        </div>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <div class="gallery-placeholder ski-action">
+                    <span>Fresh Powder at Tyrol Basin</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder night-skiing">
+                    <span>Night Skiing Under the Lights</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder powder-day">
+                    <span>Perfect Powder Day</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder chairlift-view">
+                    <span>Scenic Chairlift Views</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder lodge-warmth">
+                    <span>Cozy Lodge Atmosphere</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder sunset-slopes">
+                    <span>Golden Hour on the Slopes</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="location">
+        <div class="location-content">
+            <div class="location-text">
+                <h2>Perfectly Located in Arena</h2>
+                <div class="location-details">
+                    <div class="location-item fade-in-on-scroll">
+                        <div class="location-marker">⛷️</div>
+                        <div class="location-item-text">
+                            <h3>Tyrol Basin</h3>
+                            <p>20 miles west - just 25 minutes to hit the slopes with your family</p>
+                        </div>
+                    </div>
+
+                    <div class="location-item fade-in-on-scroll">
+                        <div class="location-marker">🏛️</div>
+                        <div class="location-item-text">
+                            <h3>Madison</h3>
+                            <p>30 miles east - explore the state capital's dining, culture, and entertainment</p>
+                        </div>
+                    </div>
+
+                    <div class="location-item fade-in-on-scroll">
+                        <div class="location-marker">🌲</div>
+                        <div class="location-item-text">
+                            <h3>Driftless Area</h3>
+                            <p>Surrounded by unique glacial-free terrain with stunning valleys and ridges</p>
+                        </div>
+                    </div>
+
+                    <div class="location-item fade-in-on-scroll">
+                        <div class="location-marker">🍷</div>
+                        <div class="location-item-text">
+                            <h3>Local Experiences</h3>
+                            <p>Wineries, breweries, farmers markets, and farm-to-table dining nearby</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="location-map fade-in-on-scroll">
+                <div class="gallery-item" style="height: 500px;">
+                    <div class="gallery-placeholder ski-action">
+                        <span>Arena, Wisconsin<br>Gateway to Tyrol Basin</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Amenities Section -->
+    <section class="amenities">
+        <div class="section-header">
+            <h2 class="section-title">Farm Amenities</h2>
+        </div>
+
+        <div class="amenities-grid">
+            <div class="amenity-item fade-in-on-scroll">
+                <h4>🔌 EV Charger</h4>
+                <p>Level 2 electric vehicle charging station</p>
+            </div>
+
+            <div class="amenity-item fade-in-on-scroll">
+                <h4>🐾 Pet Friendly</h4>
+                <p>Bring your dogs - acres to explore</p>
+            </div>
+
+            <div class="amenity-item fade-in-on-scroll">
+                <h4>📶 Fast WiFi</h4>
+                <p>Stay connected with high-speed internet</p>
+            </div>
+
+            <div class="amenity-item fade-in-on-scroll">
+                <h4>🏡 Full Kitchen</h4>
+                <p>Cook with local ingredients</p>
+            </div>
+
+            <div class="amenity-item fade-in-on-scroll">
+                <h4>🌳 Private Setting</h4>
+                <p>Peaceful farmland surroundings</p>
+            </div>
+
+            <div class="amenity-item fade-in-on-scroll">
+                <h4>🔥 Outdoor Fire Pit</h4>
+                <p>Evening s'mores and stargazing</p>
+            </div>
+
+            <div class="amenity-item fade-in-on-scroll">
+                <h4>🅿️ Free Parking</h4>
+                <p>Ample space for multiple vehicles</p>
+            </div>
+
+            <div class="amenity-item fade-in-on-scroll">
+                <h4>❄️ Winter Ready</h4>
+                <p>Perfect ski season getaway base</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-section-content">
+            <h2>Your Driftless<br>Adventure Awaits</h2>
+            <p>Book your stay at Driftless View Farm and experience the beauty of Wisconsin's unique landscape. Perfect for skiing, hiking, and unforgettable memories with your entire family.</p>
+            <div class="cta-buttons">
+                <a href="https://evolve.com/vacation-rentals/us/wi/arena/465623" class="cta-button">Reserve Now</a>
+                <a href="https://evolve.com/vacation-rentals/us/wi/arena/465623" class="cta-secondary">View Availability</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Driftless View Farm | Arena, Wisconsin</p>
+        <p style="margin-top: 1rem;">
+            <a href="https://evolve.com/vacation-rentals/us/wi/arena/465623">Book on Evolve</a>
+        </p>
+        <p style="margin-top: 2rem; font-size: 0.9rem;">
+            Experience the Driftless Region | EV Charging | Pet Friendly | Ski Tyrol Basin
+        </p>
+    </footer>
+
+    <script>
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
